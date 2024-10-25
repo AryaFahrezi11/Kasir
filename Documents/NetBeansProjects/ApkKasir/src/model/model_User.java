@@ -10,11 +10,11 @@ package model;
  */
 public class model_User {
 
-    public String getId_pengguna() {
+    public int getId_pengguna() {
         return id_pengguna;
     }
 
-    public void setId_pengguna(String id_pengguna) {
+    public void setId_pengguna(int id_pengguna) {
         this.id_pengguna = id_pengguna;
     }
 
@@ -34,11 +34,11 @@ public class model_User {
         this.email = email;
     }
 
-    public String getTelepon() {
+    public int getTelepon() {
         return telepon;
     }
 
-    public void setTelepon(String telepon) {
+    public void setTelepon(int telepon) {
         this.telepon = telepon;
     }
 
@@ -65,10 +65,10 @@ public class model_User {
     public void setRole(String role) {
         this.role = role;
     }
-    private String id_pengguna;
+    private int id_pengguna;
     private String fullname;
     private String email;
-    private String telepon;
+    private int telepon;
     private String usernama;
     private String pass;
     private String role;
