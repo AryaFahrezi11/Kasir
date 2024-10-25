@@ -22,4 +22,6 @@ public interface service_User {
     List<model_User> pencarian(String id);
     
     String nomor();
+    boolean validateOldPassword(String username, String oldPassword);
+    boolean changePassword(String username, String oldPassword, String newPassword);
 }
