@@ -26,18 +26,19 @@ public class DAO_User implements service_User{
     }
 
     @Override
-    public void tambahData(model_Produk mobar) {
+    public void tambahData(model_User mod_user) {
         PreparedStatement st = null;
-        String sql = "INSERT INTO produk (ID, nama_produk, harga_beli, harga_jual, stok, satuan) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO user (id_user, fullname, email, no_telepon, username, password, role) VALUES (?,?,?,?,?,?,?)";
         try{
             st = conn.prepareStatement(sql);
             
-            st.setInt(1, mobar.getId_produk());
-            st.setString(2, mobar.getNama_produk());
-            st.setLong  (3, mobar.getHarga_beli());
-            st.setLong  (4, mobar.getHarga_jual());
-            st.setInt   (5, mobar.getStok());
-            st.setString(6, mobar.getSatuan());
+            st.setInt       (1, mod_user.getId_pengguna());
+            st.setString    (2, mod_user.getFullname());
+            st.setString    (3, mod_user.getEmail());
+            st.setInt       (4, mod_user.getTelepon());
+            st.setString    (5, mod_user.getUsernama());
+            st.setString    (6, mod_user.getPass());
+            st.setString    (7, mod_user.getRole());
             
             st.executeUpdate();
         } catch (SQLException ex) {
@@ -54,17 +55,18 @@ public class DAO_User implements service_User{
     }
 
     @Override
-    public void perbaruiData(model_Produk mobar) {
+    public void perbaruiData(model_User mod_user) {
         PreparedStatement st = null;
-        String sql = "UPDATE produk SET nama_produk=?, harga_beli=?, harga_jual=?, stok=?, satuan=? WHERE ID='"+mobar.getId_produk()+"'";
+        String sql = "UPDATE user SET fullname=?, email=?, no_telepon=?, username=?, password=?, role=? WHERE id_user='"+mod_user.getId_pengguna()+"'";
         try{
             st = conn.prepareStatement(sql);
             
-            st.setString (1, mobar.getNama_produk());
-            st.setLong   (2, mobar.getHarga_beli());
-            st.setLong   (3, mobar.getHarga_jual());
-            st.setInt    (4, mobar.getStok());
-            st.setString (5, mobar.getSatuan());
+            st.setString    (1, mod_user.getFullname());
+            st.setString    (2, mod_user.getEmail());
+            st.setInt       (3, mod_user.getTelepon());
+            st.setString    (4, mod_user.getUsernama());
+            st.setString    (5, mod_user.getPass());
+            st.setString    (6, mod_user.getRole());
             
             st.executeUpdate();
         }catch (SQLException ex) {
@@ -82,13 +84,13 @@ public class DAO_User implements service_User{
     }
 
     @Override
-    public void hapusData(model_Produk mobar) {
+    public void hapusData(model_User mod_user) {
         PreparedStatement st =null;
-        String sql = "DELETE FROM produk WHERE ID = ?";
+        String sql = "DELETE FROM user WHERE id_user = ?";
         try{
             st = conn.prepareStatement(sql);
             
-            st.setInt(1, mobar.getId_produk());
+            st.setInt(1, mod_user.getId_pengguna());
             
             st.executeUpdate();
         } catch (SQLException ex) {
@@ -105,35 +107,32 @@ public class DAO_User implements service_User{
     }
 
     @Override
-    public model_Produk getByid(String id) {
+    public model_User getByid(String id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<model_Produk> getDataByID() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<model_Produk> getData() {
+    public List<model_User> getData() {
         PreparedStatement st = null;
         List list = new ArrayList();
         ResultSet rs = null;
-        String sql = "SELECT ID, nama_produk, harga_beli, harga_jual, stok, satuan FROM produk";
+        String sql = "SELECT id_user, fullname, email, no_telepon, username, password, role FROM user";
         try {
             st = conn.prepareStatement(sql);
             rs = st.executeQuery();
             while(rs.next()) {
-                model_Produk mobar = new model_Produk();
+                model_User mod_user = new model_User();
                 
-                mobar.setId_produk(rs.getInt ("ID"));
-                mobar.setNama_produk(rs.getString ("nama_produk"));
-                mobar.setHarga_beli(rs.getLong ("harga_beli"));
-                mobar.setHarga_jual(rs.getLong ("harga_jual"));
-                mobar.setStok(rs.getInt ("stok"));
-                mobar.setSatuan(rs.getString ("satuan"));
                 
-                list.add(mobar);
+                mod_user.setId_pengguna(rs.getInt ("id_user"));
+                mod_user.setFullname(rs.getString("fullname"));
+                mod_user.setEmail(rs.getString("email"));
+                mod_user.setTelepon(rs.getInt("no_telepon"));
+                mod_user.setUsernama(rs.getString("username"));
+                mod_user.setPass(rs.getString("password"));
+                mod_user.setRole(rs.getString("role"));
+                
+                list.add(mod_user);
             }
           return list;
         } catch (SQLException ex) {
@@ -151,25 +150,27 @@ public class DAO_User implements service_User{
     }
 
     @Override
-    public List<model_Produk> pencarian(String id) {
+    public List<model_User> pencarian(String id) {
         PreparedStatement st = null;
         List list = new ArrayList();
         ResultSet rs = null;
-        String sql ="SELECT ID, nama_produk, harga_beli, harga_jual, stok, satuan FROM produk WHERE ID LIKE '%"+id+"%' OR nama_produk LIKE '%"+id+"%'";
+        String sql ="SELECT id_user, fullname, email, no_telepon, username, password, role FROM user WHERE id_user LIKE '%"+id+"%' OR fullname LIKE '%"+id+"%'";
         try {
             st = conn.prepareStatement(sql);
             rs = st.executeQuery();
             while(rs.next()) {
-                model_Produk mobar = new model_Produk();
+                model_User mod_user = new model_User();
                 
-                mobar.setId_produk(rs.getInt ("ID"));
-                mobar.setNama_produk(rs.getString ("nama_produk"));
-                mobar.setHarga_beli(rs.getLong ("harga_beli"));
-                mobar.setHarga_jual(rs.getLong ("harga_jual"));
-                mobar.setStok(rs.getInt ("stok"));
-                mobar.setSatuan(rs.getString ("satuan"));
                 
-                list.add(mobar);
+                mod_user.setId_pengguna(rs.getInt ("id_user"));
+                mod_user.setFullname(rs.getString("fullname"));
+                mod_user.setEmail(rs.getString("email"));
+                mod_user.setTelepon(rs.getInt("no_telepon"));
+                mod_user.setUsernama(rs.getString("username"));
+                mod_user.setPass(rs.getString("password"));
+                mod_user.setRole(rs.getString("role"));
+                
+                list.add(mod_user);
             }
           return list;
         } catch (SQLException ex) {
@@ -194,11 +195,6 @@ public class DAO_User implements service_User{
     }
 
     @Override
-    public List<model_Produk> pencarian2(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public String nomor() {
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -210,10 +206,10 @@ public class DAO_User implements service_User{
         String tgl = tanggal.format(now);
         String no = noformat.format(now);
         
-        String sql = "SELECT RIGHT(ID, 3) AS Nomor " +
-                     "FROM produk " +
-                     "WHERE ID LIKE '" + no + "%' " +
-                     "ORDER BY ID DESC " +
+        String sql = "SELECT RIGHT(id_user, 2) AS Nomor " +
+                     "FROM user " +
+                     "WHERE id_user LIKE '" + no + "%' " +
+                     "ORDER BY id_user DESC " +
                      "LIMIT 1";
         
         try {
@@ -223,7 +219,7 @@ public class DAO_User implements service_User{
             if (rs.next()) {
                 int nomor = Integer.parseInt(rs.getString("Nomor"));
                 nomor++;
-                urutan = no + String.format("%03d", nomor);
+                urutan = no + String.format("%02d", nomor);
             }else {
                 urutan = no + "001";
             }
@@ -243,7 +239,12 @@ public class DAO_User implements service_User{
     }
 
     @Override
-    public String nomor2() {
+    public boolean validateOldPassword(String username, String oldPassword) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean changePassword(String username, String oldPassword, String newPassword) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

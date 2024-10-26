@@ -455,16 +455,17 @@ public class FormUser extends javax.swing.JPanel {
         tambahUser.setVisible(true);
         
         int row = tbl_User.getSelectedRow();
-        jLabel2.setText("Perbarui Data Produk");
+        jLabel2.setText("Perbarui Data User");
         
         text_IdUser.setEnabled(false);
         
-        text_IdUser.setText       (tbl_User.getModel().getValueAt(row, 1).toString());
-        text_NamaUser.setText     (tbl_User.getModel().getValueAt(row, 2).toString());
-        text_Email.setText      (tbl_User.getModel().getValueAt(row, 3).toString());
-        text_Telepon.setText      (tbl_User.getModel().getValueAt(row, 4).toString());
-        text_Username.setText           (tbl_User.getModel().getValueAt(row, 5).toString());
-        combo_Role.setSelectedItem(tbl_User.getModel().getValueAt(row, 6).toString());
+        text_IdUser.setText         (tbl_User.getModel().getValueAt(row, 1).toString());
+        text_NamaUser.setText       (tbl_User.getModel().getValueAt(row, 2).toString());
+        text_Email.setText          (tbl_User.getModel().getValueAt(row, 3).toString());
+        text_Telepon.setText        (tbl_User.getModel().getValueAt(row, 4).toString());
+        text_Username.setText       (tbl_User.getModel().getValueAt(row, 5).toString());
+        text_Pass.setText           (tbl_User.getModel().getValueAt(row, 6).toString());
+        combo_Role.setSelectedItem  (tbl_User.getModel().getValueAt(row, 7).toString());
         
         aktif();
         bt_Simpan.setText("PERBARUI");
@@ -475,6 +476,7 @@ public class FormUser extends javax.swing.JPanel {
         text_Email.setEnabled(true);
         text_Telepon.setEnabled(true);
         text_Username.setEnabled(true);
+        text_Pass.setEnabled(true);
         combo_Role.setEnabled(true);
         
     }
@@ -531,7 +533,7 @@ public class FormUser extends javax.swing.JPanel {
     private void perbaruiData() {
         int index = tbl_User.getSelectedRow();
         if (index!=-1) {
-            model_User mobar = tblModel.getData(tbl_User.convertRowIndexToModel(index));
+            model_User mod_user = tblModel.getData(tbl_User.convertRowIndexToModel(index));
             
             if(validasiInput()==true){
                 int id_user           = Integer.parseInt(text_IdUser.getText());

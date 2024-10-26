@@ -58,39 +58,40 @@ public class tableModel_User extends AbstractTableModel{
     public int getRowCount() {
         return list.size();
     }
+    
+    private final String[] columnNames = {"No", "ID User", "Nama", "Email", "No Telepon", "Username", "Password", "Role"};
 
     @Override
     public int getColumnCount() {
-        return 6;
+        return 8;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        switch (columnIndex){
-            case 0: return list.get(rowIndex).getId_pengguna();
-            case 1: return list.get(rowIndex).getFullname();
-            case 2: return list.get(rowIndex).getEmail();
-            case 3: return list.get(rowIndex).getTelepon();
-            case 4: return list.get(rowIndex).getUsernama();
-            case 5: return list.get(rowIndex).getPass();
-            case 6: return list.get(rowIndex).getRole();
-            
-            default: return null;
+            if (columnIndex == 0) {
+                return "    " + (rowIndex + 1);
+            }else{
+                switch (columnIndex - 1){
+                case 0: return list.get(rowIndex).getId_pengguna();
+                case 1: return list.get(rowIndex).getFullname();
+                case 2: return list.get(rowIndex).getEmail();
+                case 3: return list.get(rowIndex).getTelepon();
+                case 4: return list.get(rowIndex).getUsernama();
+                case 5: return list.get(rowIndex).getPass();
+                case 6: return list.get(rowIndex).getRole();
+
+                default: return null;
+            }
+        
         }
         
     }
-    
+    @Override
     public String getColumnName(int column){
-        switch (column){
-            case 0: return "id_user";
-            case 1: return "fullname";
-            case 2: return "email";
-            case 3: return "no_telepon";
-            case 4: return "username";
-            case 5: return "password";
-            case 6: return "role";
-            
-            default: return null;
+        if (column == 0) {
+            return "   " + columnNames[column];
+        }else{
+            return columnNames[column];
         }
     }
     

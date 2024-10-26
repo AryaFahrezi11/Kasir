@@ -78,12 +78,14 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="bt_Tambah" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="bt_Hapus" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="bt_Batal" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="text_Cari" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="bt_Tambah" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="bt_Hapus" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="bt_Batal" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="text_Cari" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" pref="451" max="32767" attributes="0"/>
