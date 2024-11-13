@@ -136,6 +136,7 @@ public class FromLogin extends javax.swing.JFrame {
             pst.setString(1, username);
             pst.setString(2, password);
             ResultSet rs = pst.executeQuery();
+            fungsi.savelog("Login berhasil - nama: " + nama + " ID user " + id + " sebagai " + level);
             
 
             if (rs.next()) {
@@ -156,9 +157,11 @@ public class FromLogin extends javax.swing.JFrame {
                 h.revalidate();
                 
                 dispose();
+                fungsi.savelog("Login berhasil - nama: " + nama + " ID user " + id + " sebagai " + level);
             } else {
                 // Login gagal
                 JOptionPane.showMessageDialog(this, "Username atau password salah!", "Login Gagal", JOptionPane.ERROR_MESSAGE);
+                fungsi.savelog("Login gagal - Username: " + nama + " (Username/Password tidak valid)");
             }
 
         } catch (Exception e) {

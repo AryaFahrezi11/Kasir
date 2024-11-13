@@ -2,6 +2,10 @@
 package dao;
 
 import apkkasir.databasekoneksi;
+import apkkasir.fungsi;
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.SimpleFormatter;
 //import java.lang.System.Logger;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -40,6 +44,8 @@ public class DAO_Produk implements service_Produk{
             st.setString(6, mobar.getSatuan());
             
             st.executeUpdate();
+            
+            fungsi.savelog("Produk berhasil ditambahkan: " + mobar.getNama_produk() + " dengan ID " + mobar.getId_produk());
         } catch (SQLException ex) {
             Logger.getLogger(DAO_Produk.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
@@ -67,6 +73,7 @@ public class DAO_Produk implements service_Produk{
             st.setString (5, mobar.getSatuan());
             
             st.executeUpdate();
+            fungsi.savelog("Produk berhasil diperbarui: " + mobar.getNama_produk() + " dengan ID " + mobar.getId_produk());
         }catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Perbarui Data Gagal");
             Logger.getLogger(DAO_Produk.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,6 +98,7 @@ public class DAO_Produk implements service_Produk{
             st.setInt(1, mobar.getId_produk());
             
             st.executeUpdate();
+            fungsi.savelog("Produk berhasil dihapus: " + mobar.getNama_produk() + " dengan ID " + mobar.getId_produk());
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(DAO_Produk.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
@@ -135,6 +143,7 @@ public class DAO_Produk implements service_Produk{
                 
                 list.add(mobar);
             }
+            fungsi.savelog("Data produk berhasil diambil, total: " + list.size());
           return list;
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(DAO_Produk.class.getName()).log(Level.SEVERE, null, ex);
@@ -171,6 +180,7 @@ public class DAO_Produk implements service_Produk{
                 
                 list.add(mobar);
             }
+            fungsi.savelog("Data produk berhasil diambil, total: " + list.size());
           return list;
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(DAO_Produk.class.getName()).log(Level.SEVERE, null, ex);
