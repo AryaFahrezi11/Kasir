@@ -2,6 +2,7 @@
 package dao;
 
 import apkkasir.databasekoneksi;
+import apkkasir.fungsi;
 //import java.lang.System.Logger;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -41,6 +42,7 @@ public class DAO_User implements service_User{
             st.setString    (7, mod_user.getRole());
             
             st.executeUpdate();
+            fungsi.savelog("User berhasil ditambahkan: " + mod_user.getFullname() + " dengan ID " + mod_user.getId_pengguna());
         } catch (SQLException ex) {
             Logger.getLogger(DAO_User.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
@@ -69,6 +71,7 @@ public class DAO_User implements service_User{
             st.setString    (6, mod_user.getRole());
             
             st.executeUpdate();
+            fungsi.savelog("Data user berhasil diperbarui: " + mod_user.getFullname() + " dengan ID " + mod_user.getId_pengguna());
         }catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Perbarui Data Gagal");
             Logger.getLogger(DAO_User.class.getName()).log(Level.SEVERE, null, ex);
@@ -93,6 +96,7 @@ public class DAO_User implements service_User{
             st.setInt(1, mod_user.getId_pengguna());
             
             st.executeUpdate();
+            fungsi.savelog("User berhasil dihapus: " + mod_user.getFullname() + " dengan ID " + mod_user.getId_pengguna());
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(DAO_User.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
@@ -134,6 +138,7 @@ public class DAO_User implements service_User{
                 
                 list.add(mod_user);
             }
+            fungsi.savelog("Data user berhasil diambil, total: " + list.size());
           return list;
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(DAO_User.class.getName()).log(Level.SEVERE, null, ex);
@@ -172,6 +177,7 @@ public class DAO_User implements service_User{
                 
                 list.add(mod_user);
             }
+            fungsi.savelog("Data user berhasil diambil, total: " + list.size());
           return list;
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(DAO_User.class.getName()).log(Level.SEVERE, null, ex);

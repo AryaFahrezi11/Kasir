@@ -324,15 +324,18 @@ public class Menu_Utama extends javax.swing.JFrame {
         });
         MenuItem menuRiwayat = new MenuItem(iconRiwayat, false, null, "Riwayat Transaksi", null);
         MenuItem menuLogout = new MenuItem(iconLogout, false, null, "Log Out", (ActionEvent e) -> {
+            String name = lb_nama.getText();
+            String role = lb_level.getText();
             this.setVisible(false);
                 FromLogin h = new FromLogin();
                 h.setVisible(true);
                 h.revalidate();
                 
                 dispose();
+                fungsi.savelog("" + name + " , sebagai " + role + " telah log out ");
         });
         
-        addMenu (menuHome, menuUser, menuProduk, menuTransaksi, menuProfil, menuRiwayat, menuLogout);
+        addMenu (menuHome, menuUser, menuProduk, menuTransaksi, menuRiwayat, menuProfil, menuLogout);
                 
     }
     
